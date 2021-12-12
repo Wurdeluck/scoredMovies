@@ -1,0 +1,35 @@
+spring:
+  config:
+    activate:
+      on-profile: develop
+  datasource:
+#    MySQL for research purposes
+#    url: 'jdbc:mysql://localhost:30306/marks?useSSL=false'
+#    username: root
+#    password: My:S3cr3t/
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: postgres
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+  liquibase:
+    enabled: false
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: "jdbc:h2:mem:test"
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  liquibase:
+    enabled: false
